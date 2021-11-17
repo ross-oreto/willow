@@ -109,7 +109,11 @@ abstract class Willow {
             $method = $route->getMethod();
             $name = $route->getName();
             $pattern = $route->getPattern();
-            $f3->route("$method @$name: $pattern", $route->handler, $route->ttl, $route->kbps);
+            $type = $route->getType();
+            $f3->route("$method @$name: $pattern$type"
+                , $route->getHandler()
+                , $route->ttl
+                , $route->kbps);
         }
     }
 

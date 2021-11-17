@@ -12,6 +12,25 @@ class NamedRoute {
         $this->route->handler($this->routes->getClass(), $action);
         return $this;
     }
+    public function staticHandler(string $action): NamedRoute {
+        $this->route->staticHandler($this->routes->getClass(), $action);
+        return $this;
+    }
+    /**
+     * Set the handler directly. Useful for things like:
+     * $f3->route('GET /public/@controller/@action','@controller->@action');
+     * @param string $handler
+     * @return $this
+     */
+    function dynamicHandler(string $handler): NamedRoute {
+        $this->route->dynamicHandler($handler);
+        return $this;
+    }
+    function callback(callable $callback): NamedRoute {
+        $this->route->callback($callback);
+        return $this;
+    }
+
     public function ttl(int $seconds): NamedRoute {
         $this->route->ttl($seconds);
         return $this;
@@ -22,6 +41,14 @@ class NamedRoute {
     }
     public function ajax(): NamedRoute {
         $this->route->ajax();
+        return $this;
+    }
+    public function cli(): NamedRoute {
+        $this->route->cli();
+        return $this;
+    }
+    public function sync(): NamedRoute {
+        $this->route->sync();
         return $this;
     }
 
