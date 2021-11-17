@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ @ERROR.code }}</title>
+    <link rel="icon" href="{{@asset('favicon.ico')}}">
+    <link rel="stylesheet" type="text/css" href="{{@asset('app.css')}}">
+</head>
+<body>
+<div class="body">
+    <section class="hero is-medium is-danger is-fullheight">
+        <div class="hero-head">
+            <include href="header.htm" />
+        </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <p class="title">
+                    {{ @ERROR.code }}: {{ @ERROR.text }}
+                </p>
+                <p class="subtitle">
+                    {{ @ERROR.trace }}
+                </p>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

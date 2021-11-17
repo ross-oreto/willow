@@ -1,0 +1,12 @@
+composer.phar
+/vendor/
+
+/tmp/
+.idea
+*.iml
+
+config/secrets.*
+
+node_modules/
+node/
+assets/dist

@@ -1,0 +1,22 @@
+@import "bulma.css";
+html {
+    height: 100vh;
+}
+body {
+    height: 100vh;
+}
+.page-content {
+    height: 79.5vh;
+}
+
+.navbar-brand {
+   min-height: 4.25em;
+}
+html.has-navbar-fixed-top {
+    padding-top: 4.25rem;
+}
+
+.bg-nothing {
+    background: url('/assets/nothing.jpeg') no-repeat center 0;
+    background-size: cover;
+}

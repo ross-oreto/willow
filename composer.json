@@ -1,0 +1,20 @@
+{
+    "name": "oreto/willow",
+    "description": "willow-web",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "bcosca/fatfree-core": "3.7.3",
+        "monolog/monolog": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Oreto\\Willow\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ross-oreto"
+        }
+    ]
+}
