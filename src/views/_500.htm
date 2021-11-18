@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ @ERROR.code }}</title>
-    <link rel="icon" href="{{@asset('favicon.ico')}}">
-    <link rel="stylesheet" type="text/css" href="{{@asset('app.css')}}">
+    <link rel="icon" href="{{ @asset('favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ @asset('app.css') }}">
 </head>
 <body>
 <div class="body">
     <section class="hero is-medium is-danger is-fullheight">
         <div class="hero-head">
-            <include href="header.htm" />
+            <include href="{{ 'header'.@ext }}" />
         </div>
         <div class="hero-body">
             <div class="container has-text-centered">

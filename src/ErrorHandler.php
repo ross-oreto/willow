@@ -5,21 +5,25 @@ namespace Oreto\Willow;
 use Base;
 
 class ErrorHandler {
+    static string $ERROR_PREFIX  = 'ERROR';
+
     static function handle($f3) {
-        echo match ($f3->get('ERROR.code')) {
+        echo match ($f3->get(self::$ERROR_PREFIX.".code")) {
             404 => self::handle404($f3),
             default => self::handle500($f3),
         };
     }
 
     static function handle404(Base $f3): string {
-        self::logError($f3->get('ERROR'), false);
-        return \Template::instance()->render('_404.htm');
+        $ext = $f3->get('ext');
+        self::logError($f3->get(self::$ERROR_PREFIX), false);
+        return \Template::instance()->render("_404$ext");
     }
 
     static function handle500(Base $f3): string {
-        self::logError($f3->get('ERROR'));
-        return \Template::instance()->render('_500.htm');
+        $ext = $f3->get('ext');
+        self::logError($f3->get(self::$ERROR_PREFIX));
+        return \Template::instance()->render("_500$ext");
     }
 
     /**
