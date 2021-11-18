@@ -62,8 +62,9 @@ abstract class Willow {
      * @param string|array|null $args Arguments passed for substitution in the message
      * @return string The resolved message
      */
-    protected static function dict(string $key, string|array $args = NULL): string {
-        return self::$f3->get(self::$f3->get("PREFIX").$key, $args);
+    public static function dict(string $key, string|array $args = NULL): string {
+        $message = self::$f3->get(self::$f3->get("PREFIX").$key, $args);
+        return $message == null ? $key : $message;
     }
 
     /**
@@ -84,29 +85,30 @@ abstract class Willow {
 
     /**
      * Initialize Willow
-     * Load config files, add extra functions, register error handlers etc.
+     * Load config files, add extra functions, register error handlers, define routes etc.
      * Should be the first call in index.php after acquiring the Base::instance() $f3 object
      * @param Base $f3 Fat-Free object
      * @param Routes[] $routes
+     * @return Base The base f3 object
      */
-    public static function run(Base $f3, array $routes): void {
+    public static function equip(Base $f3, array $routes): Base {
         self::$f3 = $f3;
         self::configure($f3);
         self::initLogger();
 
         // mode functions in view templates
-        $f3->set("isDev", function () use ($f3) { return self::isDev(); });
-        $f3->set("isStage", function () use ($f3) { return self::isStage(); });
-        $f3->set("isProd", function () use ($f3) { return self::isProd(); });
-        $f3->set("isDeployed", function () use ($f3) { return self::isDeployed(); });
+        $f3->set("isDev", function () { return self::isDev(); });
+        $f3->set("isStage", function () { return self::isStage(); });
+        $f3->set("isProd", function () { return self::isProd(); });
+        $f3->set("isDeployed", function () { return self::isDeployed(); });
 
         // add the asset function for use in view templates
-        $f3->set("asset", function (string $name) use ($f3) { return Willow::asset($name); });
+        $f3->set("asset", function (string $name) { return Willow::asset($name); });
 
         self::setErrorHandler();
         self::initRouter($routes);
 
-        $f3->run();
+        return $f3;
     }
 
     /**

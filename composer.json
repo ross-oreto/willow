@@ -16,5 +16,8 @@
         {
             "name": "ross-oreto"
         }
-    ]
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    }
 }

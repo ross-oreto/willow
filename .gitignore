@@ -12,3 +12,6 @@ config/secrets.*
 node_modules/
 node/
 logs
+
+.phpunit.result.cache
+tests/tmp
