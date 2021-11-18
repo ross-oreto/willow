@@ -67,8 +67,9 @@ abstract class Willow {
     protected static function configure(Base $f3, string $name = "config.ini"): bool {
         $configPath = __DIR__."/../config/$name";
         if (file_exists($configPath)) {
-           $f3->config($configPath, true);
-           return true;
+            // allow variable substitutions in config file
+            $f3->config($configPath, true);
+            return true;
         }
         return false;
     }

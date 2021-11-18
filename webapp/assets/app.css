@@ -17,6 +17,6 @@ html.has-navbar-fixed-top {
 }
 
 .bg-nothing {
-    background: url('/assets/nothing.jpeg') no-repeat center 0;
+    background: url('nothing.jpeg') no-repeat center 0;
     background-size: cover;
 }

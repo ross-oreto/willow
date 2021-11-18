@@ -4,14 +4,19 @@ Willow is a simple php web app that leverages the amazing fat free framework in 
 - Willow is derived from the word Willowy which can mean graceful or slender https://www.thesaurus.com/browse/willowy
 - Also, the movie is awesome.
 
+### Requirements
+- PHP 8.x
+- Nodejs (optional - for build minification only)
+
 ### Features
+- Fast and light
 - Targets PHP 8.0+ (very little modifications needed to use PHP 7.x)
 - Uses Monolog
+- Ideal folder structure for security (only webapp is exposed)
 - Environment aware
 - Ready to run on PHP built-in web server and Apache
 - Configurable
 - Fluent route building API
-- Fast and light
 
 ### Run locally using run.sh script
 ```bash
@@ -26,12 +31,14 @@ Willow is a simple php web app that leverages the amazing fat free framework in 
 
 ### Run locally with php
 ```bash
+cd webapp
 php -S localhost:8001 server.php
 ```
 
 ### Run locally with php in stage/prod mode 
 Willow looks for the environment variable "mode". Default is 'dev'
 ```bash
+cd webapp
 mode=stage php -S localhost:8001 server.php
 mode=prod php -S localhost:8001 server.php
 ```
