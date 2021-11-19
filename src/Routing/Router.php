@@ -18,7 +18,7 @@ class Router {
         return new Router($routes);
     }
 
-    /* @var $controllerRoutes array<string, Route> */
+    /* @var $routes array<string, Route> */
     protected array $routes = [];
 
     /* @var $controllerRoutes array<string, Routes> */
@@ -38,9 +38,18 @@ class Router {
     }
 
     /**
+     * @param string|null $class
      * @return Route[]
      */
-    public function getRoutes(): array {
-       return array_values($this->routes);
+    public function getRoutes(?string $class = null): array {
+       return $class == null ? array_values($this->routes) : ($this->controllerRoutes[$class])->getRoutes();
+    }
+
+    /**
+     * @param string $name
+     * @return Route|null
+     */
+    public function getRoute(string $name): ?Route {
+       return $this->routes[$name];
     }
 }

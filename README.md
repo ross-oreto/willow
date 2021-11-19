@@ -11,12 +11,20 @@ Willow is a simple php web app that leverages the amazing fat free framework in 
 ### Features
 - Fast and light
 - Targets PHP 8.0+ (very little modifications needed to use PHP 7.x)
-- Uses Monolog
+- Uses Monolog (the most widely accepted PHP logging lib)
 - Ideal folder structure for security (only webapp is exposed)
 - Environment aware
 - Ready to run on PHP built-in web server and Apache
 - Configurable
 - Fluent route building API
+- Comes with PHPUnit test suite which uses http guzzle for integration tests 
+
+### Installation 
+```
+git clone https://github.com/ross-oreto/willow
+cd willow
+composer install 
+```
 
 ### Run locally using run.sh script
 ```bash
@@ -48,6 +56,11 @@ mode=prod php -S localhost:8001 server.php
     1 : logs files & lines.
     2 : logs classes & functions as well.
     3 : logs detailed infos of the objects as well.
+
+### Running unit and integration tests
+```
+composer test
+```
 
 ### A note on Node and minification
 - Firstly this is not a node application
@@ -84,4 +97,12 @@ return Routes::create(self::class)
     ->PUT("update-item", "/@id")->handler('update')
     ->DELETE("delete-item", "/@id")->handler('delete')
     ->build();
+```
+
+### logs
+- By default log files are kept in /logs/app.log
+- Configurable in config.ini 
+```
+LOGS="../logs/"
+logName=
 ```

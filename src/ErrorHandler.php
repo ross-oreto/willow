@@ -7,6 +7,11 @@ use Base;
 class ErrorHandler {
     static string $ERROR_PREFIX  = 'ERROR';
 
+    private static function clearBuffer() {
+        while (ob_get_level())
+            ob_end_clean();
+    }
+
     static function handle($f3) {
         echo match ($f3->get(self::$ERROR_PREFIX.".code")) {
             404 => self::handle404($f3),
@@ -17,12 +22,14 @@ class ErrorHandler {
     static function handle404(Base $f3): string {
         $ext = $f3->get('ext');
         self::logError($f3->get(self::$ERROR_PREFIX), false);
+        self::clearBuffer();
         return \Template::instance()->render("_404$ext");
     }
 
     static function handle500(Base $f3): string {
         $ext = $f3->get('ext');
         self::logError($f3->get(self::$ERROR_PREFIX));
+        self::clearBuffer();
         return \Template::instance()->render("_500$ext");
     }
 
@@ -39,6 +46,6 @@ class ErrorHandler {
     static function logError(array $error, bool $trace = true): void {
         $stackTrace = $trace ? ". trace: ".$error['trace'] : '';
         $message = $error['code'].": ".$error['status']." - ".$error['text'].$stackTrace;
-        Willow::$logger->error($message);
+        Willow::getLogger()->error($message);
     }
 }

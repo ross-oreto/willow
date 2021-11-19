@@ -15,7 +15,8 @@ use Oreto\Willow\Routing\Routes;
  */
 abstract class Willow {
     public static string $ASSETS_PATH = "/assets";
-    public static Logger $logger;
+
+    protected static Logger $logger;
     protected static Router $router;
     protected static Base $f3;
 
@@ -37,6 +38,10 @@ abstract class Willow {
     public static function isStage(): bool {
         return self::isMode("stage");
     }
+    public static function isTest(): bool {
+        return self::isMode("test");
+    }
+
     /**
      * @return bool True if the application is deployed to a host.
      */
@@ -50,7 +55,7 @@ abstract class Willow {
      * Always look for distributed js/css asset when deployed
      * @return string Path to the web asset
      */
-     protected static function asset(string $name, bool $dist = false): string {
+    public static function asset(string $name, bool $dist = false): string {
         return $dist || (self::isDeployed() && (str_ends_with($name, "js") || str_ends_with($name, "css")))
             ? self::$f3->get("BASE").self::$ASSETS_PATH."/dist"."/$name"
             : self::$f3->get("BASE").self::$ASSETS_PATH."/$name";
@@ -109,6 +114,13 @@ abstract class Willow {
         self::initRouter($routes);
 
         return $f3;
+    }
+
+    public static function getRouter(): Router {
+        return self::$router;
+    }
+    public static function getLogger(): Logger {
+        return self::$logger;
     }
 
     /**
