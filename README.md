@@ -6,6 +6,7 @@ Willow is a simple php web app that leverages the amazing fat free framework in 
 
 ### Requirements
 - PHP 8.x
+- composer
 - Nodejs (optional - for build minification only)
 
 ### Features
@@ -18,6 +19,7 @@ Willow is a simple php web app that leverages the amazing fat free framework in 
 - Configurable
 - Fluent route building API
 - Comes with PHPUnit test suite which uses http guzzle for integration tests 
+- i18n/internationalization ready
 
 ### Installation 
 ```
@@ -75,7 +77,7 @@ npm run build
 ### The Willow Class
 Initializing and running Willow is straightforward
 ```
-Willow::run($f3, [App::routes()]);
+Willow::equip($f3, [App::routes()])->run();
 ```
 This call will likely be from index.php.
 1. The first argument is an instance of fat-free Base class.
@@ -105,4 +107,19 @@ return Routes::create(self::class)
 ```
 LOGS="../logs/"
 logName=
+```
+Access the Willow logger statically or within the controller object using:
+```
+Willow::getLogger()->info($x);  1) global logger
+$this->log->info($x);           2) protected controller logger 
+```
+
+### i18n
+Lookup language message from src/dict/en.ini using 
+```
+$message = Willow::dict('name');
+```
+In templates access dictionary using DICT preface:
+```
+{{ @DICT.404.message }}
 ```
