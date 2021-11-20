@@ -73,22 +73,6 @@ abstract class Willow {
     }
 
     /**
-     * Configure framework by reading config files from /config/
-     * @param Base $f3 Fat-Free object
-     * @param string $name Name of the config file
-     * @return bool True if the file exists and is read, false otherwise
-     */
-    protected static function configure(Base $f3, string $name = "config.ini"): bool {
-        $configPath = __DIR__."/../config/$name";
-        if (file_exists($configPath)) {
-            // allow variable substitutions in config file
-            $f3->config($configPath, true);
-            return true;
-        }
-        return false;
-    }
-
-    /**
      * Initialize Willow
      * Load config files, add extra functions, register error handlers, define routes etc.
      * Should be the first call in index.php after acquiring the Base::instance() $f3 object
@@ -121,6 +105,22 @@ abstract class Willow {
     }
     public static function getLogger(): Logger {
         return self::$logger;
+    }
+
+    /**
+     * Configure framework by reading config files from /config/
+     * @param Base $f3 Fat-Free object
+     * @param string $name Name of the config file
+     * @return bool True if the file exists and is read, false otherwise
+     */
+    protected static function configure(Base $f3, string $name = "config.ini"): bool {
+        $configPath = __DIR__."/../config/$name";
+        if (file_exists($configPath)) {
+            // allow variable substitutions in config file
+            $f3->config($configPath, true);
+            return true;
+        }
+        return false;
     }
 
     /**
