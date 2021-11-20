@@ -29,5 +29,6 @@
     },
     "scripts": {
         "test": "cd tests && ../vendor/bin/phpunit --testdox ."
-    }
+    },
+    "bin": ["run.sh"]
 }
