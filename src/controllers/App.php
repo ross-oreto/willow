@@ -1,8 +1,10 @@
 <?php
 
-namespace Oreto\Willow;
+namespace Oreto\Willow\controllers;
 
-use Oreto\Willow\Routing\Routes;
+
+use Oreto\F3Willow\Routing\Routes;
+use Oreto\F3Willow\Willow;
 
 class App extends Willow {
     static function routes(): Routes {

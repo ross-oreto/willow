@@ -5,11 +5,13 @@
     "require": {
         "php": ">=8.0",
         "bcosca/fatfree-core": "3.7.3",
-        "monolog/monolog": "^2.3"
+        "monolog/monolog": "^2.3",
+        "oreto/f3-willow": "dev-master"
     },
     "autoload": {
         "psr-4": {
-            "Oreto\\Willow\\": "src/"
+            "Oreto\\Willow\\": "src/",
+            "Oreto\\F3Willow\\": "vendor/oreto/f3-willow/src"
         }
     },
     "autoload-dev": {
@@ -30,5 +32,19 @@
     "scripts": {
         "test": "cd tests && ../vendor/bin/phpunit --testdox ."
     },
-    "bin": ["run.sh"]
+    "repositories": [
+        {
+            "type":"package",
+            "package": {
+                "name": "oreto/f3-willow",
+                "version":"master",
+                "type": "library",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/ross-oreto/f3-willow.git",
+                    "reference":"master"
+                }
+            }
+        }
+    ]
 }

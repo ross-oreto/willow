@@ -1,7 +1,7 @@
 <?php
 
-use Oreto\Willow\App;
-use Oreto\Willow\Willow;
+use Oreto\F3Willow\Willow;
+use Oreto\Willow\controllers\App;
 
 require '../vendor/autoload.php';
 $f3 = \Base::instance();
