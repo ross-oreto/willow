@@ -2,11 +2,12 @@
     "name": "oreto/willow",
     "description": "willow-web",
     "type": "project",
+    "version": "0.0.1",
     "require": {
         "php": ">=8.0",
         "bcosca/fatfree-core": "3.7.3",
         "monolog/monolog": "^2.3",
-        "oreto/f3-willow": "dev-master"
+        "oreto/f3-willow": "dev-master#v1.0.1"
     },
     "autoload": {
         "psr-4": {
@@ -42,7 +43,7 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/ross-oreto/f3-willow.git",
-                    "reference":"master"
+                    "reference":"v1.0.1"
                 }
             }
         }
