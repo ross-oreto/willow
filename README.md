@@ -59,6 +59,23 @@ mode=prod php -S localhost:8001 server.php
     2 : logs classes & functions as well.
     3 : logs detailed infos of the objects as well.
 
+### Debug with a debugger 
+Setup xdebug php.ini
+```
+  [xdebug]
+  zend_extension="<path to xdebug extension>"
+  xdebug.mode=debug
+  xdebug.client_host=127.0.0.1
+  xdebug.client_port="<the port (9003 by default) to which Xdebug connects>"
+```
+- PHP Built in server run config
+- doc root: webapp
+- working dir: webapp
+- interpreter args: server.php
+- xdebug helper browser extension
+  - Use PHPSTORM IDE key for any Jetbrains product
+
+
 ### Running unit and integration tests
 ```
 composer test
